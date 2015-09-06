@@ -1,0 +1,28 @@
+<ion-view view-title="Login">
+  <ion-content>
+    <div class="padding">
+      <h1>TravelBike concept</h1>
+      <form ng-submit="doLogin()">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="text" ng-model="loginData.email">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Password</span>
+            <input type="password" ng-model="loginData.password">
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" type="submit">Log in</button>
+          </label>
+        </div>
+      </form>
+
+      <button ng-click="facebookLogin()" class="button button-block button-balanced">Sign in with Facebook</button>
+      <p>
+        Clicking the above button will initiate an official browser sign in flow with Facebook.  You
+        will be redirected to the Facebook website to enter your credentials.
+      </p>
+    </div>
+  </ion-content>
+</ion-view>
