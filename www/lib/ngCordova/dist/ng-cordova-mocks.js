@@ -603,17 +603,6 @@ ngCordovaMocks.factory('$cordovaDevice', function () {
      */
     version: version,
 
-    /**
-     @ngdoc property
-     @name manufacturer
-     @propertyOf ngCordovaMocks.cordovaDevice
-
-     @description
-     The manufacturer of the device.
-     This property should only be used in automated tests.
-     */
-    version: version,
-
     getDevice: function () {
       return this.device;
     },
@@ -1483,7 +1472,7 @@ ngCordovaMocks.factory('$cordovaFileTransfer', ['$q', function ($q) {
         },
 
         upload: function (server, filePath, options) {
-            return mockIt.call(this, 'There was an error uploading the file.'); 
+            return mockIt.call(this, 'There was an error uploading the file.');
         }
     };
 }]);

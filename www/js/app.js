@@ -1,10 +1,5 @@
-// Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngStorage'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngStorage', 'ngMessages', 'uiGmapgoogle-maps'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,35 +17,70 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngStora
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+.constant('TB', {
+  backend: 'http://localhost:1337/api',
+  version: 0.1
+})
 
+.config(function($stateProvider, $urlRouterProvider, $localStorageProvider, uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    china: true
+  });
+
+  $stateProvider
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
-    .state('app.login', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
+    .state('index', {
+      url: '/index',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/index.html',
+          controller: 'index'
+        }
+      },
+      parent: "app"
+    })
+    .state('login', {
       url: '/login',
       views: {
         'menuContent': {
           templateUrl: 'templates/login.html',
           controller: 'login'
         }
-      }
+      },
+      parent: "app"
     })
-
-  //.state('app.single', {
-  //  url: '/playlists/:playlistId',
-  //  views: {
-  //    'menuContent': {
-  //      templateUrl: 'templates/playlist.html',
-  //      controller: 'PlaylistCtrl'
-  //    }
-  //  }
-  //})
+    .state('signup', {
+      url: '/signup',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/signup.html',
+          controller: 'signup'
+        }
+      },
+      parent: "app"
+    })
+    .state('home', {
+      url: '/home',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/home.html',
+          controller: 'home'
+        }
+      },
+      parent: "app"
+    })
   ;
+    //$localStorageProvider.set('user', {})
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  if (!$localStorageProvider.get('user')['id']) {
+    $urlRouterProvider.otherwise('/app/index');
+  } else {
+    $urlRouterProvider.otherwise('/app/home');
+  }
+
 });
