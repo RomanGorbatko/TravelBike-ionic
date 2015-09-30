@@ -34,7 +34,7 @@ angular.module('tb', [
     }
 
     if (window.BackgroundGeolocation) {
-      console.log('BackgroundGeolocation ready')
+      console.log('BackgroundGeolocation ready');
       BackgroundGeolocationService.setDependencies({
         plugin: window.BackgroundGeolocation
       });

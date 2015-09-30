@@ -1,0 +1,22 @@
+<ion-view view-title="BG Geolocation">
+
+  <!--ng-init="onToggleEnabled()"-->
+  <ion-content scroll="false" data-tap-disabled="true">
+    <map on-create="mapCreated(map)"></map>
+  </ion-content>
+
+  <div style="color: #3d3d3d" class="tabs tabs-energized tabs-icon-left">
+    <a class="tab-item" style="color: {{startButtonColor}};" ng-disabled="bgGeo.started" ng-click="onClickStart()">
+      <i class="icon ion-record"></i>
+      Start
+    </a>
+    <a class="tab-item {{bgGeo.pause ? 'active' : ''}}" ng-disabled="!bgGeo.started" ng-click="onClickPause()">
+      <i class="icon ion-pause"></i>
+      Pause
+    </a>
+    <a class="tab-item" ng-click="onClickStop()" ng-disabled="!bgGeo.started">
+      <i class="icon ion-stop"></i>
+      Finish
+    </a>
+  </div>
+</ion-view>

@@ -95,4 +95,12 @@ angular.module('tb.controllers.user', [])
           });
       }
     };
+  })
+  .controller('logout', function($state, $window, $ionicHistory, $location, $log) {
+    $log.info('- LogOut');
+    delete $window.localStorage.user;
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+    $location.path('/app/index');
   });

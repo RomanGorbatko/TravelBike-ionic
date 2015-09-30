@@ -1,0 +1,33 @@
+<ion-view view-title="Sign Up">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="padding">
+      <form name="signUpForm" id="signUpForm" novalidate ng-submit="doSignup(signUpForm)">
+        <div class="list">
+          <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : signUpForm.name.$invalid && signUpForm.$submitted, 'no-errors' : signUpForm.name.$valid && signUpForm.$submitted}">
+            <span class="input-label">Full Name</span>
+            <input type="text" ng-model="signup.name" name="name" placeholder="John Suhr" ng-minlength="4" ng-maxlength="30" required>
+            <div ng-include="'/templates/user/validation_error.html'" class="error-container" ng-show="signUpForm.name.$error && signUpForm.$submitted" ng-messages="signUpForm.name.$error" style="color:maroon" role="alert"></div>
+          </label>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : signUpForm.email.$invalid && signUpForm.$submitted, 'no-errors' : signUpForm.email.$valid  && signUpForm.$submitted}">
+            <span class="input-label">Email</span>
+            <input type="email" ng-model="signup.email" name="email" placeholder="john@suhr.com" ng-minlength="5" ng-maxlength="30" required>
+            <div ng-include="'/templates/user/validation_error.html'" class="error-container" ng-show="signUpForm.email.$error && signUpForm.$submitted" ng-messages="signUpForm.email.$error" style="color:maroon" role="alert"></div>
+          </label>
+
+          <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : signUpForm.password.$invalid && signUpForm.$submitted, 'no-errors' : signUpForm.password.$valid  && signUpForm.$submitted}">
+            <span class="input-label">Password</span>
+            <input type="password" ng-model="signup.password" name="password" placeholder="password" ng-minlength="5" ng-maxlength="30" required>
+            <div ng-include="'/templates/user/validation_error.html'" class="error-container" ng-show="signUpForm.password.$error && signUpForm.$submitted" ng-messages="signUpForm.password.$error" style="color:maroon" role="alert"></div>
+          </label>
+
+          <button class="button button-block button-positive" type="submit">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

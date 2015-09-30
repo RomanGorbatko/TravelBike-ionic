@@ -10,33 +10,27 @@ angular.module('tb.routes', []).config(function($stateProvider, $urlRouterProvid
     })
     .state('index', {
       url: '/index',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/index/index.html',
-          controller: 'index'
-        }
-      },
-      parent: "app"
+      templateUrl: 'templates/index/index.html',
+      controller: 'index'
     })
     .state('login', {
       url: '/login',
+      templateUrl: 'templates/user/login.html',
+      controller: 'login'
+    })
+    .state('logout', {
+      url: '/logout',
       views: {
         'menuContent': {
-          templateUrl: 'templates/user/login.html',
-          controller: 'login'
+          controller: 'logout'
         }
       },
       parent: "app"
     })
     .state('signup', {
       url: '/signup',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/user/signup.html',
-          controller: 'signup'
-        }
-      },
-      parent: "app"
+      templateUrl: 'templates/user/signup.html',
+      controller: 'signup'
     })
     .state('home', {
       url: '/home',
@@ -51,7 +45,7 @@ angular.module('tb.routes', []).config(function($stateProvider, $urlRouterProvid
   ;
 
   if (!window.localStorage['user']) {
-    $urlRouterProvider.otherwise('/app/index');
+    $urlRouterProvider.otherwise('/index');
   } else {
     $urlRouterProvider.otherwise('/app/home');
   }
